@@ -1,5 +1,5 @@
 {
-      "name": "node-kafka-zookeeper",
+      "name": "kafka-zookeeper",
       "description" : "A high-level client library in Node.js for the Apache Kafka project with Zookeeper integration",
       "keywords" : ["kafka", "producer", "consumer", "zookeeper", "apache"],
       "version": "0.0.1",

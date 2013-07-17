@@ -9,7 +9,7 @@ A high-level client library in Node.js for the Apache Kafka project with Zookeep
 
 A `Zookeeper` object handles broker enumeration and offset storage
 ```javascript
-var Zookeeper = require('prozess').Zookeeper;
+var Zookeeper = require('kafka-zookeeper').Zookeeper;
 var zk = new Zookeeper({
   host: 'kafka00.lan',
   port: 2181
@@ -36,7 +36,7 @@ zk.consumeTopic('MessageHeaders', 'dcrouse', onMessages);
 
 ##Installation:
 
-  npm install node-kafka-zookeeper
+  npm install kafka-zookeeper
 
 ##Checkout the code and run the tests:
 
