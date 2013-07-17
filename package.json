@@ -1,0 +1,34 @@
+{
+      "name": "node-kafka-zookeeper",
+      "description" : "A high-level client library in Node.js for the Apache Kafka project with Zookeeper integration",
+      "keywords" : ["kafka", "producer", "consumer", "zookeeper", "apache"],
+      "version": "0.0.1",
+      "bugs": {
+       "url": "https://github.com/devoncrouse/node-kafka-zookeeper/issues"
+      },
+      "scripts" : {
+        "test" : "make test-coveralls"
+      },
+      "maintainers": [
+        {
+          "name": "Devon Crouse",
+          "email": "devoncrouse@gmail.com"
+        }
+      ],
+      "contributors": [ ],
+      "dependencies": {
+          "prozess" : "0.6.x",
+          "zookeeper" : "3.4.x",
+          "underscore" : "1.5.x",
+          "bignum" : "0.6.0"
+      },
+      "devDependencies" : {
+          "jscoverage" : "0.3.6",
+          "coveralls": "1.1.2",
+          "mockery" : "1.1.2",
+          "hottap" : "1.0.1",
+          "mocha" : "1.3.0",
+          "should" : "1.1.0",
+          "sinon" : "1.5.2"
+      }
+}
