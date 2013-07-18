@@ -14,7 +14,26 @@ var onMessages = function(messages, error, cb) {
 
   // Or fail to resend the same batch in 5 seconds
   // cb(false);
-}
+};
+
+var onConsumerOffsets = function(offsets, error) {
+  if (error) {
+    console.error('onConsumerOffsets', error);
+    return;
+  }
+
+  console.log('Offsets', offsets);
+};
+
+var onInitializeConsumerOffsets = function(error) {
+  if (error) return console.error('onInitializeConsumerOffsets', error);
+  console.log('Consumer offsets initialized');
+};
 
 zk.consumeTopic('MessageHeaders', 'dcrouse', onMessages);
+zk.initializeConsumerOffsets('MessageHeaders', 'dcrouse', onInitializeConsumerOffsets);
+
+//setInterval(function() {
+//  zk.getConsumerOffsets('MessageHeaders', 'dcrouse', onConsumerOffsets);
+//}, 5000);
 

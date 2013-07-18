@@ -19,8 +19,9 @@
       "dependencies": {
           "prozess" : "0.6.x",
           "zookeeper" : "3.4.x",
+          "winston" : "0.7.x",
           "underscore" : "1.5.x",
-          "bignum" : "0.6.0"
+          "bignum" : "0.6.x"
       },
       "devDependencies" : {
           "jscoverage" : "0.3.6",
