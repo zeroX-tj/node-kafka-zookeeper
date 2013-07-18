@@ -6,7 +6,7 @@ A high-level client library in Node.js for the Apache Kafka project with Zookeep
 [Kafka](http://incubator.apache.org/kafka/index.html) is a persistent, efficient, distributed publish/subscribe messaging system.  
 [Prozess](https://github.com/cainus/Prozess) is a Kafka client library used for low-level access from node-kafka-zookeeper.
 
-##Consumer example:
+###Consumer example:
 
 A `Zookeeper` object handles broker enumeration and offset storage
 ```javascript
@@ -35,16 +35,16 @@ zk.consumeTopic('MessageHeaders', 'dcrouse', onMessages);
 
 ```
 
-##Installation:
+###Installation:
 
   npm install kafka-zookeeper
 
-##Checkout the code and run the tests:
+###Checkout the code and run the tests:
 
   git clone https://github.com/devoncrouse/node-kafka-zookeeper.git  
   cd node-kafka-zookeeper; make test-cov && open coverage.html
 
-##Kafka Compatability matrix:
+###Kafka Compatability matrix:
 
 <table>
   <tr>
