@@ -35,6 +35,37 @@ zk.consumeTopic('MessageHeaders', 'dcrouse', onMessages);
 
 ```
 
+###Utility examples:
+
+The `Zookeeper` object also exposes some utility functions - used internally and useful for testing
+```javascript
+var _ = require('underscore');
+var Zookeeper = require('../lib/Zookeeper');
+
+var zk = new Zookeeper({
+  host: 'localhost',
+  port: 2181
+});
+
+var topic = 'KafkaTopic', group = 'ConsumerGroup';
+
+// Retrieve all consumer offsets for topic/group
+var onConsumerOffsets = function(offsets, error) {
+  if (error) return console.error('onConsumerOffsets', error);
+  console.log('Offsets', offsets);
+};
+
+zk.getConsumerOffsets(topic, group, onConsumerOffsets);
+
+// Initialize consumer offsets
+var onInitializeConsumerOffsets = function(error) {
+  if (error) return console.error('onInitializeConsumerOffsets', error);
+  console.log('Consumer offsets initialized');
+};
+
+zk.initializeConsumerOffsets(topic, group, onInitializeConsumerOffsets);
+```
+
 ###Installation:
 
   npm install kafka-zookeeper
