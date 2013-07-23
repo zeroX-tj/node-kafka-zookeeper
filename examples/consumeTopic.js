@@ -41,7 +41,7 @@ var printSample = function(message) {
   });
 };
 
-var onMessages = function(messages, error, cb) {
+var onMessages = function(error, messages, cb) {
   if (error) return log.error(error);
   log.info('Received %d messages', messages.length);
   _.each(messages, printSample);
