@@ -1,8 +1,8 @@
 var argv = require('optimist')
 .usage('Usage: $0 [options]')
 .describe({
-    host: 'Elastic Search host',
-    port: 'Elastic Search port',
+    host: 'Zookeeper host',
+    port: 'Zookeeper port',
     topic: 'Kafka topic',
     group: 'Kafka consumer group',
     loglevel: 'Log verbosity',

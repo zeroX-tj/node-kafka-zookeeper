@@ -1,6 +1,6 @@
 var dir = './lib/';
 
-if (process.env.PROZESS_COVERAGE){
+if (process.env.KAFKAZK_COVERAGE){
   var dir = './lib-cov/';
 }
 

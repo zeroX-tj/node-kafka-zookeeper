@@ -1,8 +1,8 @@
 var argv = require('optimist')
 .usage('Usage: $0 [options]')
 .describe({
-    host: 'Elastic Search host',
-    port: 'Elastic Search port',
+    host: 'Zookeeper host',
+    port: 'Zookeeper port',
     topic: 'Kafka topic',
     group: 'Kafka consumer group',
     loglevel: 'Log verbosity',
@@ -21,7 +21,6 @@ var argv = require('optimist')
 var Zookeeper = require('../lib/Zookeeper');
 var Logger = require('../lib/Logger');
 var _ = require('underscore');
-var zlib = require('zlib');
 
 var zk = new Zookeeper({
     host: argv.host,
@@ -32,19 +31,10 @@ var zk = new Zookeeper({
 
 var log = new Logger(argv.loglevel, argv.logfile);
 
-var printSample = function(message) {
-  //console.log(message);
-
-  zlib.gunzip(message.payload, function(error, buffer) {
-    if (error) return log.error(error);
-    //log.info(buffer.toString('utf8'));
-  });
-};
-
 var onMessages = function(error, messages, cb) {
   if (error) return log.error(error);
   log.info('Received %d messages', messages.length);
-  _.each(messages, printSample);
+  log.debug(messages[0].substring(0, 100) + '...');
 
   // true  - (Acknowledge) Update Zk offsets and continue consuming
   // false - (Fail) Resend the same batch in 5 seconds so I don't
