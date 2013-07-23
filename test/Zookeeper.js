@@ -7,6 +7,9 @@ var bignum = require('bignum');
 var sinon = require('sinon');
 var mockery = require('mockery');
 
+var BufferMaker = require('buffermaker');
+var zlib = require('zlib');
+
 var zkMock = function(options) {
   return {
     connect: function(callback) { callback(); },
@@ -31,7 +34,17 @@ var zkMock = function(options) {
         return callback(1, 'no node', null, null, null);
       }
     },
-    close: function() { }
+    a_exists: function(path, unused, callback) {
+      // callback(return code, error, stat)
+      return callback(0, null, { version: 1 });
+    },
+    a_set: function(path, value, version, callback) {
+      // callback(return code, error)
+      this.state[path] = value;
+      return callback(0, null);
+    },
+    close: function() { },
+    state: {}
   };
 };
 
@@ -44,6 +57,37 @@ describe('Zookeeper', function() {
   describe('#consumeTopic', function() {
     //kafkaZk.consumeTopic(topic, group, function(error, messages) {
     //});
+  });
+
+  describe('#decompressMessages', function() {
+    var msg1 = 'Test message 1';
+    var msg2 = 'Second test message';
+
+    it('returns a gunzipped array of messages', function() {
+      var uncompressed = new BufferMaker()
+        .UInt32BE(msg1.length).string(msg1)
+        .UInt32BE(msg2.length).string(msg2)
+        .make();
+
+      zlib.gzip(uncompressed, function(error, buffer) {
+        var messages = [{
+            compression: 1,
+            payload: buffer
+        }];
+
+        kafkaZk.decompressMessages(messages, function(error, result) {
+          should.not.exist(error);
+          result[0].should.equal(msg1);
+          result[1].should.equal(msg2);
+        });
+      });
+    });
+
+    it('returns a snappy decomressed array of messages', function() {
+    });
+
+    it('returns a raw array of messages', function() {
+    });
   });
 
   describe('#getConsumers', function() {
@@ -96,6 +140,22 @@ describe('Zookeeper', function() {
 
   describe('#setConsumerOffsets', function() {
     it('stores offsets from an array as znodes in zookeeper', function() {
+      var offsets = [
+        { broker: '2', partition: '2', offset: '2000' },
+        { broker: '3', partition: '3', offset: '3000' }
+      ];
+
+      kafkaZk.setConsumerOffsets('setOffsetsTopic', 'setOffsetsGroup', offsets, function(error, zk) {
+        should.not.exist(error);
+
+        var two = zk.state['/consumers/setOffsetsGroup/offsets/setOffsetsTopic/2-2'];
+        should.exist(two);
+        two.should.equal('2000');
+
+        var three = zk.state['/consumers/setOffsetsGroup/offsets/setOffsetsTopic/3-3'];
+        should.exist(three);
+        three.should.equal('3000');
+      });
     });
   });
 

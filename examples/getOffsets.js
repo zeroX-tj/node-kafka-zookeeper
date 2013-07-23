@@ -37,7 +37,7 @@ var getConsumerOffsets = function() {
   zk.getConsumerOffsets(argv.topic, argv.group, onConsumerOffsets);
 };
 
-var onConsumerOffsets = function(offsets, error) {
+var onConsumerOffsets = function(error, offsets) {
   if (error) return log.error('onConsumerOffsets', error);
 
   if (!lastOffsets || !_.isEqual(lastOffsets, offsets)) {

@@ -73,7 +73,7 @@ zk.initializeConsumerOffsets(topic, group, onInitializeConsumerOffsets);
 ###Checkout the code and run the tests:
 
   git clone https://github.com/devoncrouse/node-kafka-zookeeper.git  
-  cd node-kafka-zookeeper; make test-cov && open coverage.html
+  cd node-kafka-zookeeper; npm test
 
 ###Kafka Compatability matrix:
 

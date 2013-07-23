@@ -1,14 +1,8 @@
 {
   "name": "kafka-zookeeper",
   "description": "A high-level client library in Node.js for the Apache Kafka project with Zookeeper integration",
-  "keywords": [
-    "kafka",
-    "producer",
-    "consumer",
-    "zookeeper",
-    "apache"
-  ],
-  "version": "0.0.8",
+  "keywords": [ "kafka", "producer", "consumer", "zookeeper", "apache" ],
+  "version": "0.0.11",
   "bugs": {
     "url": "https://github.com/devoncrouse/node-kafka-zookeeper/issues"
   },
@@ -42,14 +36,7 @@
     "hottap": "1.0.x",
     "mocha": "1.3.x",
     "should": "1.1.x",
-    "sinon": "1.5.x"
-  },
-  "readme": "node-kafka-zookeeper\n=======\n\nA high-level client library in Node.js for the Apache Kafka project with Zookeeper integration\n\n[Kafka](http://incubator.apache.org/kafka/index.html) is a persistent, efficient, distributed publish/subscribe messaging system.  \n[Prozess](https://github.com/cainus/Prozess) is a Kafka client library used for low-level access from node-kafka-zookeeper.\n\n###Consumer example:\n\nA `Zookeeper` object handles broker enumeration and offset storage\n```javascript\nvar Zookeeper = require('kafka-zookeeper').Zookeeper;\nvar zk = new Zookeeper({\n  host: 'kafka00.lan',\n  port: 2181\n});\n\nvar onMessages = function(messages, error, cb) {\n  if (error) return console.error(error);\n  console.log('Received %d messages', messages.length);\n\n  // true  - (Acknowledge) Update Zk offsets and continue consuming\n  // false - (Fail) Resend the same batch in 5 seconds so I don't\n  //                have to put it somewhere. TODO: configure wait\n  cb(true);\n}\n\n// Start consuming\n// TODO: Support message filter function argument\nzk.consumeTopic('MessageHeaders', 'dcrouse', onMessages);\n\n// Stop consuming\n// TODO: Implement\n\n```\n\n###Utility examples:\n\nThe `Zookeeper` object also exposes some utility functions - used internally and useful for testing\n```javascript\nvar _ = require('underscore');\nvar Zookeeper = require('../lib/Zookeeper');\n\nvar zk = new Zookeeper({\n  host: 'localhost',\n  port: 2181\n});\n\nvar topic = 'KafkaTopic', group = 'ConsumerGroup';\n\n// Retrieve all consumer offsets for topic/group\nvar onConsumerOffsets = function(offsets, error) {\n  if (error) return console.error('onConsumerOffsets', error);\n  console.log('Offsets', offsets);\n};\n\nzk.getConsumerOffsets(topic, group, onConsumerOffsets);\n\n// Initialize consumer offsets\nvar onInitializeConsumerOffsets = function(error) {\n  if (error) return console.error('onInitializeConsumerOffsets', error);\n  console.log('Consumer offsets initialized');\n};\n\nzk.initializeConsumerOffsets(topic, group, onInitializeConsumerOffsets);\n```\n\n###Installation:\n\n  npm install kafka-zookeeper\n\n###Checkout the code and run the tests:\n\n  git clone https://github.com/devoncrouse/node-kafka-zookeeper.git  \n  cd node-kafka-zookeeper; make test-cov && open coverage.html\n\n###Kafka Compatability matrix:\n\n<table>\n  <tr>\n     <td>Kakfa 0.8.0 Release</td><td>Not Supported</td>\n  </tr>\n  <tr>\n    <td>Kafka 0.7.2 Release</td><td>Supported</td>\n  <tr>\n    <td>Kafka 0.7.1 Release</td><td>Supported</td>\n  <tr>\n    <td>Kafka 0.7.0 Release</td><td>Supported</td>\n  <tr>\n    <td>kafka-0.6</td><td>Consumer-only support.</td>\n  <tr>\n    <td>kafka-0.05</td><td>Not Supported</td>\n</table>\n\nVersions taken from http://incubator.apache.org/kafka/downloads.html\n",
-  "readmeFilename": "README.md",
-  "_id": "kafka-zookeeper@0.0.7",
-  "dist": {
-    "shasum": "10fcffebe0406bdf7e93b566e8a94d54be0acba2"
-  },
-  "_from": "kafka-zookeeper@0.x.x",
-  "_resolved": "https://registry.npmjs.org/kafka-zookeeper/-/kafka-zookeeper-0.0.7.tgz"
+    "sinon": "1.5.x",
+    "buffermaker": "0.0.x"
+  }
 }
