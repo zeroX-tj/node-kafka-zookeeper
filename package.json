@@ -2,7 +2,7 @@
   "name": "kafka-zookeeper",
   "description": "A high-level client library in Node.js for the Apache Kafka project with Zookeeper integration",
   "keywords": [ "kafka", "producer", "consumer", "zookeeper", "apache" ],
-  "version": "0.0.11",
+  "version": "0.0.12",
   "bugs": {
     "url": "https://github.com/devoncrouse/node-kafka-zookeeper/issues"
   },
