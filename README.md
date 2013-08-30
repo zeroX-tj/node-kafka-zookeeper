@@ -13,7 +13,8 @@ A `Zookeeper` object handles broker enumeration and offset storage
 var Zookeeper = require('kafka-zookeeper').Zookeeper;
 var zk = new Zookeeper({
   host: 'kafka00.lan',
-  port: 2181
+  port: 2181,
+  zkPath: '/'
 });
 
 var onMessages = function(messages, error, cb) {
