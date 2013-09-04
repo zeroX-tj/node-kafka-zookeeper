@@ -20,7 +20,7 @@ var argv = require('optimist')
 
 var _ = require('underscore');
 var Zookeeper = require('../lib/Zookeeper');
-var Logger = require('../lib/Logger');
+var Logger = require('Logger');
 var loglevel = 'info';
 
 var zk = new Zookeeper({

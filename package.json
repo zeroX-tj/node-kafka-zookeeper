@@ -23,13 +23,13 @@
     "prozess": "0.6.x",
     "zookeeper": "3.4.x",
     "optimist": "0.6.x",
-    "winston": "0.7.x",
     "underscore": "1.5.x",
     "underscore.string": "2.3.x",
     "bignum": "0.6.x",
     "async": "0.2.x"
   },
   "devDependencies": {
+    "winston": "0.7.x",
     "jscoverage": "0.3.x",
     "coveralls": "1.1.x",
     "mockery": "1.4.x",
