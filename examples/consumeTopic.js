@@ -19,7 +19,7 @@ var argv = require('optimist')
 .argv;
 
 var Zookeeper = require('../lib/Zookeeper');
-var Logger = require('../lib/Logger');
+var Logger = require('Logger');
 var _ = require('underscore');
 
 var zk = new Zookeeper({
