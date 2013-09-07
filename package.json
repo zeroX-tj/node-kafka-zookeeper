@@ -17,7 +17,7 @@
   ],
   "contributors": [],
   "engines": {
-    "node": ">=0.8"
+    "node": ">=0.10.18"
   },
   "dependencies": {
     "prozess": "0.6.x",
