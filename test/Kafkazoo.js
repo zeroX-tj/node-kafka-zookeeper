@@ -91,7 +91,7 @@ describe('Kafkazoo', function () {
             });
         });
 
-        it('returns a snappy decomressed array of messages', function () {
+        it('returns a snappy decompressed array of messages', function () {
         });
 
         it('returns a raw array of messages', function () {
