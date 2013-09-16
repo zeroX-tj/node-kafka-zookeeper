@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "prozess": "0.6.x",
-    "zookeeper": "git://github.com:zeroX-tj/node-zookeeper.git",
+    "zookeeper": "git://github.com/zeroX-tj/node-zookeeper.git",
     "optimist": "0.6.x",
     "underscore": "1.5.x",
     "underscore.string": "2.3.x",
